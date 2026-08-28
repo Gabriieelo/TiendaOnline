@@ -1,11 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>E-Commerce - Tienda Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css.css" rel="stylesheet">
 </head>
 <body>
-    
+
+    <header class="sticky-top bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark container">
+            <a class="navbar-brand fw-bold" href="#">Tienda Online</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#productos">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light position-relative ms-lg-3" id="btn-carrito">
+                            🛒 Carrito
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cant-carrito">0</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container my-5">
+        <section id="productos-section">
+            <h1 class="text-center mb-4">Catálogo de Productos</h1>
+            
+            <!-- Grilla donde JavaScript insertará las tarjetas de productos -->
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="contenedor-productos">
+                <!-- Los productos se cargarán dinámicamente aquí -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 MiTienda - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Tu archivo de JavaScript -->
+    <script src="js/app.js"></script>
 </body>
 </html>

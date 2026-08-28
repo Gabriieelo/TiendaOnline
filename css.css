@@ -1,0 +1,134 @@
+/* ==========================================
+   1. VARIABLES DE COLOR Y FUENTES (UX/UI)
+   ========================================== */
+:root {
+    --color-primary: #0d6efd;
+    --color-secondary: #6c757d;
+    --color-bg-light: #f8f9fa;
+    --color-card-bg: #ffffff;
+    --color-text-dark: #212529;
+    --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --transition-speed: 0.25s;
+}
+
+/* ==========================================
+   2. ESTILOS GENERALES Y ACCESIBILIDAD
+   ========================================== */
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1; /* Mantiene el footer abajo de todo si hay poco contenido */
+}
+
+/* Mejora de accesibilidad para elementos enfocados por teclado */
+a:focus-visible, 
+button:focus-visible {
+    outline: 3px solid #ffc107;
+    outline-offset: 2px;
+}
+
+/* ==========================================
+   3. ENCABEZADO Y NAVEGACIÓN
+   ========================================== */
+header {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+/* Badge del Carrito */
+#cant-carrito {
+    font-size: 0.75rem;
+    padding: 0.35em 0.6em;
+}
+
+/* ==========================================
+   4. TARJETAS DE PRODUCTOS (CARDS)
+   ========================================== */
+.card-producto {
+    border: none;
+    border-radius: 12px;
+    background-color: var(--color-card-bg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Efecto Hover en las Cards */
+.card-producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Imagen del producto dentro de la card */
+.card-producto .card-img-container {
+    height: 200px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.card-producto img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* Cuerpo y contenido de la tarjeta */
+.card-producto .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.25rem;
+}
+
+.card-producto .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+    height: 2.6em; /* Limita a 2 líneas de texto aprox */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.card-producto .precio {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #198754;
+}
+
+/* ==========================================
+   5. BOTONES Y DETALLES UI
+   ========================================== */
+.btn-agregar-carrito {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color var(--transition-speed) ease;
+}
+
+/* ==========================================
+   6. PIE DE PÁGINA (FOOTER)
+   ========================================== */
+footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+}
