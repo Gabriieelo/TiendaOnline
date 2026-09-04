@@ -22,9 +22,9 @@
                         <a class="nav-link active" href="#productos-section">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <button class="btn btn-outline-light position-relative ms-lg-3" id="btn-carrito">
+                        <button type="button" class="btn btn-outline-light position-relative ms-lg-3" id="btn-carrito" data-bs-toggle="offcanvas" data-bs-target="#sidebar-carrito" aria-controls="sidebar-carrito" aria-label="Abrir carrito, 0 productos">
                             🛒 Carrito
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cant-carrito">0</span>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cant-carrito" aria-live="polite" hidden>0</span>
                         </button>
                     </li>
                 </ul>
@@ -93,6 +93,29 @@
                     <button type="button" class="btn btn-primary" id="modal-btn-agregar">Agregar al carrito 🛒</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Punto 5: listado de productos guardados en el carrito -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="sidebar-carrito" aria-labelledby="carrito-titulo">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title fs-5" id="carrito-titulo">Tu carrito 🛒</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar carrito"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p id="carrito-vacio" class="text-muted text-center py-4">Tu carrito está vacío. Agregá productos del catálogo.</p>
+            <ul id="lista-carrito" class="list-group list-group-flush"></ul>
+        </div>
+    </div>
+
+    <!-- Punto 4: confirmación accesible después de guardar el producto -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toast-carrito" class="toast" role="status" aria-live="polite" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">MiTienda</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Cerrar mensaje"></button>
+            </div>
+            <div id="mensaje-carrito" class="toast-body"></div>
         </div>
     </div>
 
