@@ -39,6 +39,29 @@ header {
 }
 
 /* Badge del Carrito */
+.carrito-imagen {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.carrito-detalle {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.carrito-cantidad {
+    min-width: 2.25rem;
+    padding: 0.35rem;
+}
+
+.carrito-controles .btn {
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    padding: 0.35rem 0.6rem;
+}
+
 #cant-carrito {
     font-size: 0.75rem;
     padding: 0.35em 0.6em;
