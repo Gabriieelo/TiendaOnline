@@ -115,6 +115,58 @@ footer {
     font-size: 0.9rem;
 }
 
+/* Card clickeable para abrir el detalle */
+.card-producto {
+    cursor: pointer;
+}
+
+/* Modal de detalle de producto (contenido, la estructura y el show/hide los maneja Bootstrap) */
+.modal-content {
+    border: none;
+    border-radius: 12px;
+}
+
+.modal-img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+}
+
+.modal-img-container img {
+    max-height: 260px;
+    object-fit: contain;
+}
+
+.modal-categoria {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+}
+
+#modal-descripcion {
+    color: var(--color-secondary);
+    font-size: 0.95rem;
+}
+
+.modal-precio {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #198754;
+    margin-top: 0.75rem;
+}
+
+/* Filtro de categorías */
+.btn-categoria {
+    border-radius: 20px;
+    font-weight: 600;
+}
+
 @media (max-width: 576px) {
     main {
         padding-left: 10px;
