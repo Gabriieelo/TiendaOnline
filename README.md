@@ -25,14 +25,14 @@ La aplicación permite listar productos obtenidos desde una API externa, ver el 
 - [x] Listado de productos desde la API en cards
 - [x] Agregar producto al carrito (persistido en LocalStorage)
 - [x] Contador de productos en el ícono del carrito (navbar)
-- [ ] Modal de detalle de producto (título, precio, descripción)
+- [x] Modal de detalle de producto (título, precio, descripción)
 - [ ] Sidebar/offcanvas del carrito con listado de productos
 - [ ] Control de cantidad por producto (botones +/-) y eliminación individual
 - [ ] Botón "Finalizar compra" (vacía el carrito y el LocalStorage)
 - [ ] Botón "Eliminar todos los productos" del carrito
 - [ ] Estados deshabilitados/ocultos cuando el carrito está vacío
-- [ ] Buscador de productos
-- [ ] Navegación y filtrado por categorías
+- [x] Buscador de productos
+- [x] Navegación y filtrado por categorías
 - [ ] Mensajes de feedback al usuario (agregado al carrito, compra finalizada)
 
 > Proyecto en desarrollo activo — este checklist se irá actualizando a medida que se completen los requisitos del enunciado.
