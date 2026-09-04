@@ -23,6 +23,8 @@ const modalBtnAgregar = document.getElementById('modal-btn-agregar');
 // Array para almacenar el carrito de compras
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
+const inputBuscador = document.getElementById('input-buscador');
+
 // 1. Función para obtener productos de la API (Fetch)
 async function obtenerProductos() {
     try {
@@ -37,7 +39,7 @@ async function obtenerProductos() {
         `;
 
         const respuesta = await fetch(API_URL);
-        
+
         if (!respuesta.ok) {
             throw new Error(`Error en la petición: ${respuesta.status}`);
         }
@@ -120,6 +122,15 @@ function marcarCategoriaActiva(botonActivo) {
 // 2. Función para renderizar las tarjetas en el DOM
 function renderizarProductos(productos) {
     contenedorProductos.innerHTML = ''; // Limpiar loader
+    if (productos.length === 0) {
+        contenedorProductos.innerHTML = `
+        <div class="col-12 text-center my-5 text-muted">
+            <h4>🔎 No se encontraron productos</h4>
+            <p>Intenta buscar con otra palabra clave.</p>
+        </div>
+    `;
+        return;
+    }
 
     productos.forEach(producto => {
         // Adaptar propiedades de la API (si alguna propiedad viene con otro nombre, se maneja un fallback)
@@ -193,6 +204,20 @@ function abrirModalDetalle(producto) {
     modalBootstrap.show();
 }
 
+// 2.2 Función para filtrar los productos por texto de búsqueda
+function filtrarProductos(textoBusqueda) {
+    const textoLimpio = (textoBusqueda ?? '').toLowerCase().trim();
+
+    const productosFiltrados = textoLimpio === ''
+        ? todosLosProductos
+        : todosLosProductos.filter(producto => {
+            const titulo = (producto.title || producto.name || '').toLowerCase();
+            return titulo.includes(textoLimpio);
+        });
+
+    renderizarProductos(productosFiltrados);
+}
+
 // 3. Función para agregar productos al carrito y guardar en LocalStorage
 function agregarAlCarrito(producto) {
     const existe = carrito.some(item => item.id === producto.id);
@@ -214,7 +239,7 @@ function agregarAlCarrito(producto) {
 // 4. Actualizar contador del carrito y LocalStorage
 function actualizarCarrito() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    
+
     // Sumar todas las cantidades
     const totalItems = carrito.reduce((acc, item) => acc + (item.cantidad || 1), 0);
     cantCarrito.textContent = totalItems;
@@ -225,4 +250,10 @@ document.addEventListener('DOMContentLoaded', () => {
     obtenerProductos();
     obtenerCategorias();
     actualizarCarrito(); // Recupera el contador guardado
+
+    if (inputBuscador) {
+        inputBuscador.addEventListener('input', (evento) => {
+            filtrarProductos(evento.target.value);
+        });
+    }
 });
