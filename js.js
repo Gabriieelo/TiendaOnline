@@ -25,6 +25,8 @@ let carrito = cargarCarrito();
 const btnCarrito = document.getElementById('btn-carrito');
 const listaCarrito = document.getElementById('lista-carrito');
 const carritoVacio = document.getElementById('carrito-vacio');
+const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
+const btnVaciarCarrito = document.getElementById('btn-vaciar-carrito');
 const mensajeCarrito = document.getElementById('mensaje-carrito');
 const toastCarrito = new bootstrap.Toast(document.getElementById('toast-carrito'), { delay: 3500 });
 
@@ -263,7 +265,11 @@ function agregarAlCarrito(producto) {
 // Todas las acciones guardan primero; si falla, se conserva el carrito anterior.
 function guardarCambiosCarrito(nuevoCarrito, carritoAnterior = carrito) {
     try {
-        localStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
+        if (nuevoCarrito.length === 0) {
+            localStorage.removeItem('carrito');
+        } else {
+            localStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
+        }
     } catch (error) {
         carrito = carritoAnterior;
         mensajeCarrito.textContent = 'No se pudo guardar el cambio en el carrito. Verificá que el navegador permita el almacenamiento local e intentá nuevamente.';
@@ -291,6 +297,19 @@ function eliminarDelCarrito(id) {
     guardarCambiosCarrito(carrito.filter(item => item.id !== id));
 }
 
+// Puntos 7 y 8: limpiar los datos del carrito y confirmar la acción.
+function finalizarCompra() {
+    if (carrito.length === 0 || !guardarCambiosCarrito([])) return;
+    mensajeCarrito.textContent = '¡Compra finalizada! Gracias por tu compra.';
+    toastCarrito.show();
+}
+
+function vaciarCarrito() {
+    if (carrito.length === 0 || !guardarCambiosCarrito([])) return;
+    mensajeCarrito.textContent = 'Se eliminaron todos los productos del carrito.';
+    toastCarrito.show();
+}
+
 // 4 y 5. Actualizar el contador de unidades y el listado del sidebar.
 function actualizarCarrito() {
     // Sumar todas las cantidades
@@ -299,6 +318,8 @@ function actualizarCarrito() {
     cantCarrito.hidden = totalItems === 0;
     btnCarrito.setAttribute('aria-label', `Abrir carrito, ${totalItems} ${totalItems === 1 ? 'producto' : 'productos'}`);
     carritoVacio.hidden = carrito.length > 0;
+    btnFinalizarCompra.disabled = carrito.length === 0;
+    btnVaciarCarrito.disabled = carrito.length === 0;
     listaCarrito.replaceChildren();
 
     carrito.forEach(item => {
@@ -353,6 +374,8 @@ document.addEventListener('DOMContentLoaded', () => {
     obtenerProductos();
     obtenerCategorias();
     actualizarCarrito(); // Recupera el contador guardado
+    btnFinalizarCompra.addEventListener('click', finalizarCompra);
+    btnVaciarCarrito.addEventListener('click', vaciarCarrito);
 
     if (inputBuscador) {
         inputBuscador.addEventListener('input', (evento) => {

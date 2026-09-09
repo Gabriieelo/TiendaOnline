@@ -30,12 +30,12 @@ La aplicación permite listar productos obtenidos desde una API externa, ver el 
 - [x] Mensaje de confirmación al agregar un producto al carrito
 - [x] Control de cantidad por producto (botones +/-) y eliminación individual
 - [x] Total por producto actualizado según cantidad y persistencia de cada cambio en LocalStorage
-- [ ] Botón "Finalizar compra" (vacía el carrito y el LocalStorage)
-- [ ] Botón "Eliminar todos los productos" del carrito
-- [ ] Estados deshabilitados/ocultos cuando el carrito está vacío
+- [x] Botón "Finalizar compra" (vacía el carrito y elimina sus datos de LocalStorage)
+- [x] Botón "Eliminar todos los productos" del carrito
+- [x] Estados deshabilitados/ocultos cuando el carrito está vacío
 - [x] Buscador de productos
 - [x] Navegación y filtrado por categorías
-- [ ] Mensajes de feedback al usuario (agregado al carrito, compra finalizada)
+- [x] Mensajes de feedback al usuario (agregado al carrito, compra finalizada)
 
 > Proyecto en desarrollo activo — este checklist se irá actualizando a medida que se completen los requisitos del enunciado.
 
