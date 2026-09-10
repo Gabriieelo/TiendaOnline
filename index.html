@@ -3,129 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce - Proyecto Final</title>
+    <title>MiTienda – Tu marketplace de confianza</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css.css">
 </head>
 <body>
 
-    <!-- Encabezado y Navegación -->    
-  <header class="sticky-top bg-dark">
-        <nav class="navbar navbar-expand-lg navbar-dark container">
-            <a class="navbar-brand fw-bold" href="#">MiTienda</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#productos-section">Productos</a>
-                    </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-outline-light position-relative ms-lg-3" id="btn-carrito" data-bs-toggle="offcanvas" data-bs-target="#sidebar-carrito" aria-controls="sidebar-carrito" aria-label="Abrir carrito, 0 productos">
-                            🛒 Carrito
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cant-carrito" aria-live="polite" hidden>0</span>
+    <!-- Announcement bar -->
+    <div class="announcement-bar">
+        🎉 ¡Envío gratis en compras mayores a $50! &nbsp;·&nbsp; Nuevos productos cada semana
+    </div>
+
+    <!-- Navbar -->
+    <header class="sticky-top">
+        <nav class="navbar site-nav navbar-dark">
+            <div class="container d-flex align-items-center gap-3">
+
+                <a class="navbar-brand me-2" href="#">Mi<span>Tienda</span></a>
+
+                <!-- Búsqueda (desktop) -->
+                <form class="search-form d-none d-md-flex flex-grow-1" role="search" onsubmit="return false;">
+                    <div class="input-group">
+                        <input
+                            type="search"
+                            id="input-buscador"
+                            class="form-control"
+                            placeholder="Buscar productos por nombre..."
+                            aria-label="Buscar productos"
+                        >
+                        <button class="btn-search" type="submit" aria-label="Buscar">
+                            <i class="bi bi-search"></i>
                         </button>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+                    </div>
+                </form>
 
-    <main class="container my-5">
-        <section id="productos-section">
-            <h1 class="text-center mb-4">Catálogo de Productos</h1>
-
-            <div class="row justify-content-center mb-4">
-            <div class="col-12 col-md-6">
-                <div class="input-group">
-                    <span class="input-group-text bg-white" id="search-addon">🔍</span>
-                    <input
-                        type="search"
-                        id="input-buscador"
-                        class="form-control"
-                        placeholder="Buscar productos por nombre..."
-                        aria-label="Buscar productos"
-                        aria-describedby="search-addon"
+                <div class="ms-auto d-flex align-items-center gap-2">
+                    <button
+                        type="button"
+                        class="btn-cart-nav position-relative"
+                        id="btn-carrito"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#sidebar-carrito"
+                        aria-controls="sidebar-carrito"
+                        aria-label="Abrir carrito, 0 productos"
                     >
+                        <i class="bi bi-bag"></i> Carrito
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                            id="cant-carrito"
+                            aria-live="polite"
+                            hidden
+                        >0</span>
+                    </button>
                 </div>
             </div>
-        </div>
+        </nav>
 
-            <div class="d-flex flex-wrap justify-content-center gap-2 mb-4" id="contenedor-categorias">
-
+        <!-- Búsqueda (mobile) -->
+        <div class="search-mobile">
+            <div class="input-group">
+                <input
+                    type="search"
+                    id="input-buscador-mobile"
+                    class="form-control"
+                    placeholder="Buscar productos..."
+                    aria-label="Buscar productos"
+                >
+                <button class="btn-search" type="button" aria-label="Buscar">
+                    <i class="bi bi-search"></i>
+                </button>
             </div>
+        </div>
+    </header>
 
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="contenedor-productos">
-
+    <main>
+        <!-- Hero -->
+        <section class="hero-section">
+            <div class="container position-relative">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <span class="hero-badge">🔥 Ofertas de temporada</span>
+                        <h1 class="hero-title">
+                            Todo lo que<br>necesitás, <em>aquí</em>
+                        </h1>
+                        <p class="hero-subtitle">
+                            Explorá miles de productos con los mejores precios.
+                            Envío rápido y pagos seguros.
+                        </p>
+                        <div class="d-flex flex-wrap gap-3">
+                            <a href="#productos-section" class="btn-hero-primary">
+                                Ver productos <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                            <button
+                                class="btn-hero-secondary"
+                                data-bs-toggle="offcanvas"
+                                data-bs-target="#sidebar-carrito"
+                            >
+                                <i class="bi bi-bag me-1"></i> Mi carrito
+                            </button>
+                        </div>
+                        <div class="hero-stats">
+                            <div>
+                                <div class="hero-stat-value">500+</div>
+                                <div class="hero-stat-label">Productos</div>
+                            </div>
+                            <div>
+                                <div class="hero-stat-value">12</div>
+                                <div class="hero-stat-label">Categorías</div>
+                            </div>
+                            <div>
+                                <div class="hero-stat-value">24h</div>
+                                <div class="hero-stat-label">Envío express</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <!-- Catálogo -->
+        <div class="container py-4" id="productos-section">
+
+            <!-- Categorías -->
+            <section class="mb-4">
+                <span class="section-label">Explorar</span>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h2 class="section-title">Categorías</h2>
+                </div>
+                 <div class="d-flex flex-wrap gap-2" id="contenedor-categorias"></div>
+            </section>
+
+            <!-- Productos -->
+            <section>
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div>
+                        <span class="section-label">Catálogo</span>
+                        <h2 class="section-title">Todos los productos</h2>
+                        
+                    </div>
+                    <p id="conteo-productos"></p>
+                </div>
+
+                <div
+                    class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4"
+                    id="contenedor-productos"
+                ></div>
+            </section>
+        </div>
     </main>
 
-    <!-- Pie de página -->
-    <footer class="bg-dark text-white text-center py-3 mt-auto">
+    <!-- Footer -->
+    <footer class="site-footer">
         <div class="container">
-            <p class="mb-0">&copy; 2026 MiTienda - Todos los derechos reservados</p>
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <div class="footer-brand">Mi<span>Tienda</span></div>
+                    <p style="font-size:.82rem; margin-top:6px; margin-bottom:0;">
+                        Tu marketplace de confianza. Calidad y precio.
+                    </p>
+                </div>
+                <div class="col-md-4 text-center d-none d-md-block">
+                    <span style="font-size:.8rem;">
+                        &copy; 2026 MiTienda &nbsp;·&nbsp; Todos los derechos reservados
+                    </span>
+                </div>
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                    <span style="font-size:.8rem; color:#475569;">
+                        <i class="bi bi-shield-check me-1" style="color:var(--accent)"></i>Pagos seguros
+                        &nbsp;·&nbsp;
+                        <i class="bi bi-truck me-1" style="color:var(--accent)"></i>Envío rápido
+                    </span>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Modal de detalle de producto (Bootstrap 5) -->
+    <!-- Modal detalle de producto -->
     <div class="modal fade" id="modal-detalle" tabindex="-1" aria-labelledby="modal-titulo" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="modal-titulo"></h2>
+                <div class="modal-header border-0 pb-0 d-flex align-items-start justify-content-between">
+                    <span class="badge-categoria" id="modal-categoria"></span>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body pt-1">
                     <div class="row g-4 align-items-center">
-                        <div class="col-md-5 modal-img-container">
-                            <img id="modal-img" src="" alt="" class="img-fluid">
+                        <div class="col-md-5">
+                            <div class="modal-img-container">
+                                <img id="modal-img" src="" alt="" class="img-fluid">
+                            </div>
                         </div>
                         <div class="col-md-7">
-                            <span class="modal-categoria" id="modal-categoria"></span>
+                            <h2 class="fs-4 fw-bold mb-2" id="modal-titulo"></h2>
                             <p id="modal-descripcion"></p>
                             <span class="modal-precio" id="modal-precio"></span>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="modal-btn-agregar">Agregar al carrito 🛒</button>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" id="modal-btn-agregar">
+                        <i class="bi bi-cart-plus me-2"></i>Agregar al carrito
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Punto 5: listado de productos guardados en el carrito -->
+    <!-- Offcanvas carrito -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="sidebar-carrito" aria-labelledby="carrito-titulo">
         <div class="offcanvas-header">
-            <h2 class="offcanvas-title fs-5" id="carrito-titulo">Tu carrito 🛒</h2>
+            <h2 class="offcanvas-title fw-bold" id="carrito-titulo">
+                <i class="bi bi-bag" style="color:var(--accent)"></i>
+                Mi carrito
+            </h2>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar carrito"></button>
         </div>
         <div class="offcanvas-body">
-            <p id="carrito-vacio" class="text-muted text-center py-4">Tu carrito está vacío. Agregá productos del catálogo.</p>
+            <p id="carrito-vacio" class="text-muted text-center">
+                <i class="bi bi-bag-x d-block mb-3" style="font-size:3rem; opacity:.15;"></i>
+                Tu carrito está vacío.<br>
+                <span style="font-size:.82rem;">Explorá el catálogo y agregá productos.</span>
+            </p>
             <ul id="lista-carrito" class="list-group list-group-flush"></ul>
         </div>
-        <div class="border-top p-3 d-grid gap-2">
-            <button type="button" id="btn-finalizar-compra" class="btn btn-success" disabled>Finalizar compra</button>
-            <button type="button" id="btn-vaciar-carrito" class="btn btn-outline-danger" disabled>Eliminar todos los productos</button>
+        <div class="border-top d-grid gap-2" id="carrito-footer-btns">
+            <button type="button" id="btn-finalizar-compra" class="btn btn-success" disabled>
+                <i class="bi bi-lock me-2"></i>Finalizar compra
+            </button>
+            <button type="button" id="btn-vaciar-carrito" class="btn btn-outline-danger" disabled>
+                <i class="bi bi-trash3 me-1"></i>Vaciar carrito
+            </button>
         </div>
     </div>
 
-    <!-- Punto 4: confirmación accesible después de guardar el producto -->
+    <!-- Toast confirmación -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="toast-carrito" class="toast" role="status" aria-live="polite" aria-atomic="true">
             <div class="toast-header">
-                <strong class="me-auto">MiTienda</strong>
+                <strong class="me-auto">
+                    <i class="bi bi-check-circle-fill me-1" style="color:var(--accent)"></i>
+                    MiTienda
+                </strong>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Cerrar mensaje"></button>
             </div>
             <div id="mensaje-carrito" class="toast-body"></div>
         </div>
     </div>
 
-    <!-- Bootstrap 5 JS Bundle -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Tu archivo de JavaScript -->
+    <!-- JS sin modificar -->
     <script src="js.js"></script>
 </body>
 </html>

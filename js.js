@@ -6,9 +6,12 @@ const CATEGORIES_URL = 'https://web-api-products.runasp.net/api/categories';
 const contenedorProductos = document.getElementById('contenedor-productos');
 const contenedorCategorias = document.getElementById('contenedor-categorias');
 const cantCarrito = document.getElementById('cant-carrito');
+const conteoProductos = document.getElementById('conteo-productos');
 
 // Guardamos todos los productos para poder filtrarlos por categoría sin volver a pedirlos a la API
 let todosLosProductos = [];
+// Guardamos todas las categorías para poder filtrar los productos por categoría sin volver a pedirlas a la API
+let todasLasCategorias = [];
 
 // Elementos del modal de detalle de producto (Bootstrap 5)
 const modalDetalle = document.getElementById('modal-detalle');
@@ -47,6 +50,7 @@ function cargarCarrito() {
 }
 
 const inputBuscador = document.getElementById('input-buscador');
+const inputBuscadorMobile = document.getElementById('input-buscador-mobile');
 
 // 1. Función para obtener productos de la API (Fetch)
 async function obtenerProductos() {
@@ -91,6 +95,7 @@ async function obtenerCategorias() {
         }
 
         const categorias = await respuesta.json();
+        todasLasCategorias = categorias;
         renderizarCategorias(categorias);
 
     } catch (error) {
@@ -131,6 +136,12 @@ function renderizarCategorias(categorias) {
         });
 }
 
+// 1.2.1 Busca el nombre de una categoría por su id (los productos solo traen categoryId)
+function obtenerNombreCategoria(categoryId) {
+    const categoria = todasLasCategorias.find(cat => cat.id === categoryId);
+    return categoria ? categoria.name : '';
+}
+
 // 1.3 Función para resaltar visualmente el botón de categoría seleccionado
 function marcarCategoriaActiva(botonActivo) {
     contenedorCategorias.querySelectorAll('.btn-categoria').forEach(boton => {
@@ -155,12 +166,15 @@ function renderizarProductos(productos) {
         return;
     }
 
+    conteoProductos.textContent = `${productos.length} productos`;
+
     productos.forEach(producto => {
         // Adaptar propiedades de la API (si alguna propiedad viene con otro nombre, se maneja un fallback)
         const id = producto.id;
         const titulo = producto.title || producto.name || 'Producto sin título';
         const precio = producto.price || 0;
         const imagen = producto.image || producto.imageUrl || 'https://via.placeholder.com/200?text=Sin+Imagen';
+        const nombreCategoria = obtenerNombreCategoria(producto.categoryId);
 
         // Creamos la columna responsive
         const col = document.createElement('div');
@@ -173,11 +187,12 @@ function renderizarProductos(productos) {
                     <img src="${imagen}" alt="${titulo}" class="img-fluid" loading="lazy">
                 </div>
                 <div class="card-body">
+                    ${nombreCategoria ? `<span class="badge-categoria">${nombreCategoria}</span>` : ''}
                     <h5 class="card-title">${titulo}</h5>
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <span class="precio">$${precio.toFixed(2)}</span>
                         <button class="btn btn-primary btn-sm btn-agregar-carrito" data-id="${id}">
-                            Agregar 🛒
+                            <i class="bi bi-cart-plus me-2"></i>Agregar
                         </button>
                     </div>
                 </div>
@@ -207,9 +222,7 @@ function abrirModalDetalle(producto) {
     const precio = producto.price || 0;
     const imagen = producto.image || producto.imageUrl || 'https://via.placeholder.com/200?text=Sin+Imagen';
     const descripcion = producto.description || 'Sin descripción disponible.';
-    const categoria = typeof producto.category === 'string'
-        ? producto.category
-        : (producto.category && producto.category.name) || '';
+    const categoria = obtenerNombreCategoria(producto.categoryId);
 
     modalImg.src = imagen;
     modalImg.alt = titulo;
@@ -377,9 +390,14 @@ document.addEventListener('DOMContentLoaded', () => {
     btnFinalizarCompra.addEventListener('click', finalizarCompra);
     btnVaciarCarrito.addEventListener('click', vaciarCarrito);
 
-    if (inputBuscador) {
-        inputBuscador.addEventListener('input', (evento) => {
-            filtrarProductos(evento.target.value);
+    [inputBuscador, inputBuscadorMobile].forEach((input) => {
+        if (!input) return;
+        input.addEventListener('input', (evento) => {
+            const valor = evento.target.value;
+            filtrarProductos(valor);
+            // Mantiene sincronizados los dos buscadores (desktop y mobile)
+            if (inputBuscador && inputBuscador !== evento.target) inputBuscador.value = valor;
+            if (inputBuscadorMobile && inputBuscadorMobile !== evento.target) inputBuscadorMobile.value = valor;
         });
-    }
+    });
 });
