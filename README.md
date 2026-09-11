@@ -25,7 +25,7 @@ La aplicación permite listar productos obtenidos desde una API externa, ver el 
 - [x] Listado de productos desde la API en cards
 - [x] Agregar producto al carrito (persistido en LocalStorage)
 - [x] Contador de productos en el ícono del carrito (navbar)
-- [ ] Modal de detalle de producto (título, precio, descripción)
+- [x] Modal de detalle de producto (título, precio, descripción)
 - [x] Sidebar/offcanvas del carrito con listado de productos y sus cantidades
 - [x] Mensaje de confirmación al agregar un producto al carrito
 - [x] Control de cantidad por producto (botones +/-) y eliminación individual
