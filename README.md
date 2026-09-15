@@ -42,8 +42,11 @@ La aplicación permite listar productos obtenidos desde una API externa, ver el 
 ## 📂 Estructura del proyecto
 
 ```
-├── index.html   # Estructura principal de la página
-├── css.css      # Estilos de la aplicación
-├── js.js        # Lógica: fetch de productos, carrito, LocalStorage
+├── index.html          # Estructura principal de la página
+├── css/
+│   ├── base.css        # Variables, layout base, navbar, hero, footer
+│   ├── productos.css   # Categorías, tarjetas de producto, modal
+│   └── carrito.css     # Offcanvas del carrito y toast
+├── js.js               # Lógica: fetch de productos, carrito, LocalStorage
 └── README.md
 ```
