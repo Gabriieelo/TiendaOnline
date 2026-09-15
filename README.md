@@ -25,7 +25,7 @@ La aplicación permite listar productos obtenidos desde una API externa, ver el 
 - [x] Listado de productos desde la API en cards
 - [x] Agregar producto al carrito (persistido en LocalStorage)
 - [x] Contador de productos en el ícono del carrito (navbar)
-- [ ] Modal de detalle de producto (título, precio, descripción)
+- [x] Modal de detalle de producto (título, precio, descripción)
 - [x] Sidebar/offcanvas del carrito con listado de productos y sus cantidades
 - [x] Mensaje de confirmación al agregar un producto al carrito
 - [x] Control de cantidad por producto (botones +/-) y eliminación individual
@@ -42,8 +42,11 @@ La aplicación permite listar productos obtenidos desde una API externa, ver el 
 ## 📂 Estructura del proyecto
 
 ```
-├── index.html   # Estructura principal de la página
-├── css.css      # Estilos de la aplicación
-├── js.js        # Lógica: fetch de productos, carrito, LocalStorage
+├── index.html          # Estructura principal de la página
+├── css/
+│   ├── base.css        # Variables, layout base, navbar, hero, footer
+│   ├── productos.css   # Categorías, tarjetas de producto, modal
+│   └── carrito.css     # Offcanvas del carrito y toast
+├── js.js               # Lógica: fetch de productos, carrito, LocalStorage
 └── README.md
 ```

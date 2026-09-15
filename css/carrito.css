@@ -1,0 +1,226 @@
+/* ── Cart offcanvas ───────────────────────────────────────── */
+#sidebar-carrito {
+    width: 380px;
+    border-left: 1px solid var(--border);
+}
+
+.offcanvas-header {
+    background: var(--dark-nav);
+    padding: 1.1rem 1.25rem;
+    border-bottom: none;
+}
+
+.offcanvas-header .offcanvas-title {
+    color: #fff;
+    font-size: 1rem !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.offcanvas-header .btn-close {
+    filter: invert(1) brightness(0.7);
+    opacity: 0.7;
+}
+
+.offcanvas-header .btn-close:hover { opacity: 1; }
+
+.offcanvas-body {
+    padding: 0;
+    background: var(--page-bg);
+}
+
+/* Empty state */
+#carrito-vacio {
+    padding: 3rem 2rem !important;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Item list */
+#lista-carrito {
+    padding: 0 1.25rem;
+}
+
+#lista-carrito .list-group-item {
+    background: transparent;
+    border-color: var(--border);
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+#lista-carrito .list-group-item:last-child {
+    border-bottom: none;
+}
+
+/* Product image in cart */
+.carrito-imagen {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 10px;
+    padding: 6px;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+/* Detail block */
+.carrito-detalle {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    flex: 1;
+}
+
+.carrito-detalle .fs-6 {
+    font-size: 0.85rem !important;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.3rem !important;
+}
+
+/* Price in cart item */
+.carrito-detalle .fw-bold.text-success {
+    color: var(--accent) !important;
+    font-size: 0.9rem;
+}
+
+/* Quantity controls */
+.carrito-controles {
+    gap: 0.4rem !important;
+}
+
+.carrito-controles .btn {
+    min-width: 1.9rem;
+    min-height: 1.9rem;
+    padding: 0.15rem 0.45rem;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Override Bootstrap primary for +/- buttons */
+.carrito-controles .btn.btn-primary {
+    background: var(--dark-nav);
+    border-color: var(--dark-nav);
+    color: #fff;
+}
+
+.carrito-controles .btn.btn-primary:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.carrito-controles .btn.btn-primary:disabled {
+    background: #e2e8f0;
+    border-color: #e2e8f0;
+    color: #94a3b8;
+}
+
+/* Quantity display */
+.carrito-cantidad {
+    min-width: 2rem;
+    padding: 0.15rem 0.4rem !important;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+    border-color: var(--border) !important;
+    border-radius: 6px;
+    background: #fff;
+    color: var(--text);
+}
+
+/* Delete button */
+.carrito-controles .btn.btn-danger {
+    background: transparent;
+    border-color: #fecaca;
+    color: #ef4444;
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+}
+
+.carrito-controles .btn.btn-danger:hover {
+    background: #ef4444;
+    border-color: #ef4444;
+    color: #fff;
+}
+
+/* Cart footer */
+#sidebar-carrito .border-top {
+    border-color: var(--border) !important;
+    background: #fff;
+    padding: 1.25rem !important;
+}
+
+/* Checkout button */
+#btn-finalizar-compra {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: #fff !important;
+    font-weight: 700;
+    font-family: var(--font-main);
+    border-radius: 10px !important;
+    padding: 0.7rem !important;
+    font-size: 0.93rem;
+    transition: background var(--speed);
+}
+
+#btn-finalizar-compra:not(:disabled):hover {
+    background: var(--accent-hover) !important;
+    border-color: var(--accent-hover) !important;
+}
+
+#btn-finalizar-compra:disabled {
+    background: #e2e8f0 !important;
+    border-color: #e2e8f0 !important;
+    color: #94a3b8 !important;
+    cursor: not-allowed;
+}
+
+/* Clear cart button */
+#btn-vaciar-carrito {
+    border-color: #fecaca !important;
+    color: #ef4444 !important;
+    font-weight: 600;
+    font-family: var(--font-main);
+    border-radius: 10px !important;
+    padding: 0.6rem !important;
+    font-size: 0.88rem;
+    background: transparent !important;
+    transition: background var(--speed), color var(--speed);
+}
+
+#btn-vaciar-carrito:not(:disabled):hover {
+    background: #ef4444 !important;
+    border-color: #ef4444 !important;
+    color: #fff !important;
+}
+
+#btn-vaciar-carrito:disabled {
+    border-color: #e2e8f0 !important;
+    color: #cbd5e1 !important;
+    cursor: not-allowed;
+}
+
+/* ── Toast ───────────────────────────────────────────────── */
+#toast-carrito {
+    background: #0f172a;
+    border-radius: 12px;
+    color: #fff;
+    border: none;
+}
+
+.toast-header {
+    background: #1e293b;
+    color: #fff;
+    border-bottom: 1px solid #334155;
+    border-radius: 12px 12px 0 0;
+}
+
+.toast-header .btn-close { filter: invert(1); }
+
+.toast-container { z-index: 1200; }
