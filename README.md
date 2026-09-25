@@ -47,6 +47,13 @@ La aplicación permite listar productos obtenidos desde una API externa, ver el 
 │   ├── base.css        # Variables, layout base, navbar, hero, footer
 │   ├── productos.css   # Categorías, tarjetas de producto, modal
 │   └── carrito.css     # Offcanvas del carrito y toast
-├── js.js               # Lógica: fetch de productos, carrito, LocalStorage
+├── js/
+│   ├── api.js          # URLs de la API y fetch de productos y categorías
+│   ├── categorias.js   # Botones de filtro por categoría
+│   ├── productos.js    # Render de las cards y búsqueda por nombre
+│   ├── modal.js        # Modal de detalle de producto
+│   ├── carrito.js      # Carrito: agregar, cantidades, eliminar, LocalStorage
+│   └── main.js         # Inicialización de la app y buscadores
 └── README.md
 ```
+
