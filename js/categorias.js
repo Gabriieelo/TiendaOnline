@@ -16,7 +16,7 @@ function renderizarCategorias(categorias) {
     btnTodas.textContent = 'Todas';
     btnTodas.addEventListener('click', () => {
         marcarCategoriaActiva(btnTodas);
-        renderizarProductos(todosLosProductos);
+        filtrarPorCategoria(null);
     });
     contenedorCategorias.appendChild(btnTodas);
 
@@ -29,10 +29,7 @@ function renderizarCategorias(categorias) {
             btnCategoria.textContent = categoria.name;
             btnCategoria.addEventListener('click', () => {
                 marcarCategoriaActiva(btnCategoria);
-                const productosFiltrados = todosLosProductos.filter(
-                    producto => producto.categoryId === categoria.id
-                );
-                renderizarProductos(productosFiltrados);
+                filtrarPorCategoria(categoria.id);
             });
             contenedorCategorias.appendChild(btnCategoria);
         });

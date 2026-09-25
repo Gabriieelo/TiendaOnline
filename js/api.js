@@ -25,7 +25,7 @@ async function obtenerProductos() {
 
         const productos = await respuesta.json();
         todosLosProductos = productos;
-        renderizarProductos(productos);
+        filtrarProductos();
 
     } catch (error) {
         console.error('Error al traer los productos:', error);

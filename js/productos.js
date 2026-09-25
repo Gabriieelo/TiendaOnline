@@ -5,10 +5,14 @@ const conteoProductos = document.getElementById('conteo-productos');
 
 // Guardamos todos los productos para poder filtrarlos por categoría sin volver a pedirlos a la API
 let todosLosProductos = [];
+let categoriaSeleccionadaId = null;
+let textoBusquedaActual = '';
 
 // 2. Función para renderizar las tarjetas en el DOM
 function renderizarProductos(productos) {
     contenedorProductos.innerHTML = ''; // Limpiar loader
+    conteoProductos.textContent = `${productos.length} productos`;
+
     if (productos.length === 0) {
         contenedorProductos.innerHTML = `
         <div class="col-12 text-center my-5 text-muted">
@@ -18,8 +22,6 @@ function renderizarProductos(productos) {
     `;
         return;
     }
-
-    conteoProductos.textContent = `${productos.length} productos`;
 
     productos.forEach(producto => {
         // Adaptar propiedades de la API (si alguna propiedad viene con otro nombre, se maneja un fallback)
@@ -70,15 +72,24 @@ function renderizarProductos(productos) {
 }
 
 // 2.2 Función para filtrar los productos por texto de búsqueda
-function filtrarProductos(textoBusqueda) {
-    const textoLimpio = (textoBusqueda ?? '').toLowerCase().trim();
+function filtrarProductos(textoBusqueda = textoBusquedaActual) {
+    textoBusquedaActual = (textoBusqueda ?? '').toLowerCase().trim();
+    aplicarFiltrosProductos();
+}
 
-    const productosFiltrados = textoLimpio === ''
-        ? todosLosProductos
-        : todosLosProductos.filter(producto => {
-            const titulo = (producto.title || producto.name || '').toLowerCase();
-            return titulo.includes(textoLimpio);
-        });
+function filtrarPorCategoria(categoryId) {
+    categoriaSeleccionadaId = categoryId;
+    aplicarFiltrosProductos();
+}
 
+function aplicarFiltrosProductos() {
+    const productosFiltrados = todosLosProductos.filter(producto => {
+        const coincideCategoria = categoriaSeleccionadaId === null
+            || producto.categoryId === categoriaSeleccionadaId;
+        const titulo = (producto.title || producto.name || '').toLowerCase();
+        const coincideBusqueda = titulo.includes(textoBusquedaActual);
+
+        return coincideCategoria && coincideBusqueda;
+    });
     renderizarProductos(productosFiltrados);
 }
